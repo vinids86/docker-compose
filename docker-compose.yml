@@ -1,0 +1,142 @@
+discovery:
+ image: vinids86/discovery-server:latest
+ container_name: discovery
+ ports:
+ - "8761:8761"
+ net: "microservicesnet"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker1"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+discovery2:
+ image: vinids86/discovery-server:latest
+ container_name: discovery2
+ ports:
+ - "8762:8762"
+ net: "microservicesnet"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker2"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+product-service:
+ image: vinids86/product-service:latest
+ container_name: product-service
+ hostname: product-service
+ net: "microservicesnet"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+recommendation-service:
+ image: vinids86/recommendation-service:latest
+ container_name: recommendation-service
+ hostname: recommendation-service
+ net: "microservicesnet"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+auth-server:
+ image: vinids86/auth-server:latest
+ container_name: auth-server
+ hostname: auth-server
+ net: "microservicesnet"
+ ports:
+ - "9999:9999"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+product-composite:
+ image: vinids86/product-composite:latest
+ container_name: product-composite
+ hostname: product-composite
+ net: "microservicesnet"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+edge-server:
+ image: vinids86/edge-server:latest
+ container_name: edge-server
+ hostname: edge-server
+ net: "microservicesnet"
+ ports:
+ - "8765:8765"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+monitor-dashboard:
+ image: vinids86/monitor-dashboard:latest
+ container_name: monitor-dashboard
+ hostname: monitor-dashboard
+ net: "microservicesnet"
+ ports:
+ - "8989:8989"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+config-server:
+ image: vinids86/config-server:latest
+ container_name: config-server
+ hostname: config-server
+ net: "microservicesnet"
+ ports:
+ - "8888:8888"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
+zipkin-server:
+ image: vinids86/zipkin-server:latest
+ container_name: zipkin-server
+ hostname: zipkin-server
+ net: "microservicesnet"
+ ports:
+ - "9411:9411"
+ environment:
+ - "SPRING_PROFILES_ACTIVE=docker"
+ - "JAVA_OPTS=-Xmx256m -Xms128m"
+ restart: on-failure
+ log_driver: syslog
+ log_opt:
+   syslog-address: "tcp://127.0.0.1:25826"
+
